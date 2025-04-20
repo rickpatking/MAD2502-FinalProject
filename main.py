@@ -151,6 +151,6 @@ def dijkstra(start_vertex: int, stop_vertex: int, vor: Voronoi) -> list:
         path.append(current_node)
         current_node = pre[current_node]
 
-    path.reverse()
     path.append(start_vertex)
+    path.reverse()
     return path
