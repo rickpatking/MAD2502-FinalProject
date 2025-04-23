@@ -5,7 +5,7 @@ from heapq import heapify, heappop, heappush
 
 # Example
 sites = np.array([[1,0], [4,2.5], [1,5], [7.5,4], [5, 6], [5,2], [2, 5], [3.2, 5.3]])
-start = np.array([5, 7])
+start = np.array([1, 2])
 stop = np.array([6,0])
 vor = Voronoi(sites)
 
@@ -149,12 +149,10 @@ def dijkstra(start_vertex: int, stop_vertex: int, vor: Voronoi) -> list:
     path = []
     current_node = stop_vertex
 
-    while current_node:
+    while current_node is not None:
         path.append(current_node)
         current_node = pre[current_node]
 
-    if path[-1] != start_vertex:
-        path.append(start_vertex)
     path.reverse()
     return path
 
@@ -192,6 +190,16 @@ def visualize_path(path: list, vor: Voronoi) -> None:
     ax.plot(xs, ys, '-r', linewidth=2)
     ax.plot(xs[0], ys[0], 'bo', label='Start')
     ax.plot(xs[-1], ys[-1], 'ro', label='Stop')
+
+    plot_max_y = max(path[0][1], path[-1][1])
+    plot_min_y = min(path[0][1], path[-1][1])
+    tol = (plot_max_y - plot_min_y) // 2
+    plt.ylim([plot_min_y - tol, plot_max_y + tol])
+
+    plot_max_x = max(path[0][0], path[-1][0])
+    plot_min_x = min(path[0][0], path[-1][0])
+    tol = (plot_max_x - plot_min_x) // 2
+    plt.xlim([plot_min_x - tol, plot_max_x + tol])
 
     ax.legend()
     plt.show()
