@@ -175,3 +175,23 @@ def path_finder(start: np.ndarray, stop: np.ndarray, vor: Voronoi):
         full_path.append(vor.vertices[vertex])
     full_path.append(stop)
     return full_path
+
+def visualize_path(path: list, vor: Voronoi) -> None:
+    """
+    Plots the Voronoi diagram and overlays a computed path.
+
+    :param path: List of 2D points (as numpy arrays) starting with the start point and ending with the stop point.
+    :param vor:  A scipy.spatial.Voronoi diagram.
+    """
+    fig, ax = plt.subplots()
+    voronoi_plot_2d(vor, ax=ax)
+
+    xs = [pt[0] for pt in path]
+    ys = [pt[1] for pt in path]
+
+    ax.plot(xs, ys, '-r', linewidth=2)
+    ax.plot(xs[0], ys[0], 'bo', label='Start')
+    ax.plot(xs[-1], ys[-1], 'ro', label='Stop')
+
+    ax.legend()
+    plt.show()
