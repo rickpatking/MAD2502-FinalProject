@@ -28,8 +28,8 @@ def voronoi_plotter(start: np.ndarray, stop: np.ndarray, vor: Voronoi, sites: np
     plt.plot(stop[0], stop[1], 'ro')
     voronoi_plot_2d(vor, ax=ax)
 
-    x_vals = [pt[0] for pt in path] + list(vor.vertices[:, 0]) + [pt[0] for pt in sites.tolist()]
-    y_vals = [pt[1] for pt in path] + list(vor.vertices[:, 1]) + [pt[1] for pt in sites.tolist()]
+    x_vals = list(vor.vertices[:, 0]) + [pt[0] for pt in sites.tolist()]
+    y_vals = list(vor.vertices[:, 1]) + [pt[1] for pt in sites.tolist()]
 
     x_min, x_max = min(x_vals), max(x_vals)
     y_min, y_max = min(y_vals), max(y_vals)
