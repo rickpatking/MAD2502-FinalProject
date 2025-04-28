@@ -244,7 +244,7 @@ def main():
             # sites = np.array(sites)
             # start = np.array(start)
             # stop = np.array(stop)
-            #print('csv')
+            print('csv')
         except FileNotFoundError:
             return print('File not found')
         except ValueError:
