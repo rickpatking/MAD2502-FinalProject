@@ -239,12 +239,7 @@ def main():
     if choice == 'y':
         filename = input('Enter CSV file name: ')
         try:
-            #This is a blueprint for loading a csv, will have to edit later
             sites, start, stop = load_risk_path_from_csv(filename)
-            # sites = np.array(sites)
-            # start = np.array(start)
-            # stop = np.array(stop)
-            print('csv')
         except FileNotFoundError:
             return print('File not found')
         except ValueError:
