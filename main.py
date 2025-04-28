@@ -240,7 +240,7 @@ def main():
         filename = input('Enter CSV file name: ')
         try:
             #This is a blueprint for loading a csv, will have to edit later
-            # sites, start, stop = load_csv(filename)
+            sites, start, stop = load_risk_path_from_csv(filename)
             # sites = np.array(sites)
             # start = np.array(start)
             # stop = np.array(stop)
@@ -288,8 +288,11 @@ def main():
             return print('Error')
 
     vor = Voronoi(sites)
-    path = path_finder(start, stop, vor, sites, rescue_time)
+    path = path_finder(start, stop, vor, sites)
     visualize_path(path, vor, sites)
+    output_file = input("Enter output CSV file name to save the data: ")
+    export_risk_path_to_csv(sites, start, stop, output_file)
+    print(f"Data has been exported to {output_file}")
 
 if __name__ == "__main__":
     main()
