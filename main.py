@@ -290,9 +290,13 @@ def main():
     vor = Voronoi(sites)
     path = path_finder(start, stop, vor, sites)
     visualize_path(path, vor, sites)
-    output_file = input("Enter output CSV file name to save the data: ")
-    export_risk_path_to_csv(sites, start, stop, output_file)
-    print(f"Data has been exported to {output_file}")
+    question=input('Do you want to export the data? (y/n): ')
+    if question == 'y':
+        output_file = input("Enter output CSV file name to save the data: ")
+        export_risk_path_to_csv(sites, start, stop, output_file)
+        print(f"Data has been exported to {output_file}")
+    else:
+        pass
 
 if __name__ == "__main__":
     main()
